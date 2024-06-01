@@ -1,2 +1,3 @@
 /backend/node_modules
 /customer-feedback-system/node_modules
+/backend/.env
