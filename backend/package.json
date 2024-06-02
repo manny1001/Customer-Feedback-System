@@ -2,9 +2,10 @@
   "name": "prosoft-backend-api",
   "version": "1.0.0",
   "description": "backend project for the customer feedback system. Allows customers to provide feedback on products. Admin can login to view the list of feedback provided by customers and can also view a list of other admin users in the system.",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npx nodemon ./src/server.js"
   },
   "author": "Emmanuel",
   "license": "ISC",
@@ -13,10 +14,14 @@
     "express": "^4.19.2",
     "jsonwebtoken": "^9.0.2",
     "mongodb": "^6.7.0",
-    "mongoose": "^8.4.1"
+    "mongoose": "^8.4.1",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.1"
   },
   "devDependencies": {
+    "chai": "^5.1.1",
     "jest": "^29.7.0",
+    "mocha": "^10.4.0",
     "nodemon": "^3.1.2",
     "supertest": "^7.0.0"
   }

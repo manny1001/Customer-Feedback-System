@@ -1,0 +1,88 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Customer Feedback Management API",
+    "description": "API for managing customer feedback",
+    "version": "1.0.0"
+  },
+  "host": "localhost:5000",
+  "basePath": "/api/v1",
+  "schemes": ["http"],
+  "paths": {
+    "/feedback": {
+      "post": {
+        "tags": ["Feedback"],
+        "summary": "Submit customer feedback",
+        "description": "Submit customer feedback",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Feedback to submit to admin",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Feedback"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Feedback successfully submitted"
+          }
+        }
+      },
+      "get": {
+        "tags": ["Feedback"],
+        "summary": "Get all feedback",
+        "description": "Get all customer feedback",
+        "responses": {
+          "200": {
+            "description": "A list of feedback",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Feedback"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/feedback/{id}": {
+      "get": {
+        "tags": ["Feedback"],
+        "summary": "Get feedback by feedback ID",
+        "description": "Get feedback by feedback ID",
+        "responses": {
+          "200": {
+            "description": "A list of feedback",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Feedback"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Feedback": {
+      "type": "object",
+      "required": ["customerId", "comments", "rating"],
+      "properties": {
+        "customerId": {
+          "type": "string"
+        },
+        "comments": {
+          "type": "string"
+        },
+        "rating": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    }
+  }
+}
