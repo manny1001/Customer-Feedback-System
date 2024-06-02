@@ -12,8 +12,8 @@ class MongoAdminRepository extends AdminRepository {
     return await AdminModel.findById(id);
   }
 
-  async findAll() {
-    return await AdminModel.find();
+  async getAlladmins() {
+    return await AdminModel.findAll();
   }
 
   async deleteById() {

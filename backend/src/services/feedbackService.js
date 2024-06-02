@@ -1,5 +1,5 @@
-const Feedback = require("../domain/entities/feedback");
-
+const mongoose = require("mongoose");
+const { ObjectId } = mongoose.Types;
 class FeedbackService {
   constructor(feedbackRepository) {
     this.feedbackRepository = feedbackRepository;
@@ -10,6 +10,10 @@ class FeedbackService {
   }
 
   async getFeedbackById(id) {
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return;
+    }
+
     return await this.feedbackRepository.findById(id);
   }
 

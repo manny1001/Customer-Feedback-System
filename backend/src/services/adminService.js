@@ -1,19 +1,17 @@
 const Admin = require("../domain/entities/admin");
-
+const bcrypt = require("bcrypt");
 class AdminService {
   constructor(adminRepository) {
     this.adminRepository = adminRepository;
   }
 
   async createAdmin(adminDto) {
-    console.log(adminDto)
     const admin = new Admin(
       null,
       adminDto.username,
-      adminDto.password,
+      await bcrypt.hash(adminDto.password, 10),
       false
     );
-    console.log(admin);
     return await this.adminRepository.save(admin);
   }
 

@@ -22,4 +22,29 @@ const authMiddleware = require("../middleware/authMiddleware");
  */
 router.post("/",  adminController.createAdmin);
 
+/**
+ * @swagger
+ * /:
+ *   post:
+ *     tags:
+ *       - Admin
+ *     description: Get all administrators
+ *     parameters:
+ *       - name: body
+ *         in: body
+ *         required: true
+ *         schema:
+ *           $ref: '#/definitions/Admin'
+ *     responses:
+ *       200:
+ *         description: List of administrators
+ *         schema:
+ *           type: array
+ *           items:
+ *             $ref: '#/definitions/Admin'
+ */
+router.get("/",  adminController.getAllAdmins);
+
+
+
 module.exports = router;
