@@ -78,22 +78,68 @@
           }
         ]
       }
+    },
+    "/Admin": {
+      "post": {
+        "tags": ["Admin"],
+        "summary": "Add new admin user",
+        "description": "Add new admin user",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Admin user added",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Admin"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Admin successfully added"
+          }
+        }
+      }
     }
   },
   "definitions": {
     "Feedback": {
       "type": "object",
-      "required": ["customerId", "comments", "rating"],
+      "required": ["fullname", "message"],
       "properties": {
-        "customerId": {
+        "fullname": {
           "type": "string"
         },
-        "comments": {
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "Admin": {
+      "type": "object",
+      "required": ["name", "password", "isDeleted"],
+      "properties": {
+        "name": {
           "type": "string"
         },
-        "rating": {
-          "type": "integer",
-          "format": "int32"
+        "password": {
+          "type": "string"
+        },
+        "isDeleted": {
+          "type": "string"
+        }
+      }
+    },
+    "Customer": {
+      "type": "object",
+      "required": ["name", "feedback"],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "feedback": {
+          "type": "string"
         }
       }
     }

@@ -2,25 +2,20 @@ const FeedbackService = require("../services/feedbackService");
 const MongoFeedbackRepository = require("../infrastructure/repositories/MongoFeedbackRepository");
 
 const feedbackRepository = new MongoFeedbackRepository();
-console.log(feedbackRepository);
 const feedbackService = new FeedbackService(feedbackRepository);
 
 exports.createFeedback = async (req, res) => {
   try {
+    console.log('req',req);
+
     const body = {
-      userId: req.body.customerId,
-      message: req.body.comments,
-      rating: req.body.rating,
+      id :null,
+      fullname: req.body.fullname,
+      message: req.body.message,
+      createdAt : new Date()
     };
+    console.log('body',body);
     const feedback = await feedbackService.createFeedback(body);
-    feedback
-      .save()
-      .then((savedFeedback) => {
-        console.log(savedFeedback);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
 
     res.status(201).json(feedback);
   } catch (error) {

@@ -6,14 +6,7 @@ class FeedbackService {
   }
 
   async createFeedback(feedbackDto) {
-    const feedback = new Feedback(
-      null,
-      feedbackDto.userId,
-      feedbackDto.message,
-      feedbackDto.rating
-    );
-    console.log(feedback);
-    return await this.feedbackRepository.save(feedback);
+    return await this.feedbackRepository.save(feedbackDto);
   }
 
   async getFeedbackById(id) {

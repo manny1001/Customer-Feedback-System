@@ -1,5 +1,5 @@
 const FeedbackRepository = require("../../domain/repositories/FeedbackRepository");
-const FeedbackModel = require("../models/FeedbackModel");
+const FeedbackModel = require("../models/feedback");
 
 class MongoFeedbackRepository extends FeedbackRepository {
   async save(feedback) {
