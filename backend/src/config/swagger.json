@@ -29,23 +29,13 @@
         "description": "Register new admin user",
         "parameters": [
           {
-            "name": "username",
+            "name": "Registration",
             "in": "body",
             "description": "admin username",
             "required": true,
             "schema": {
               "type": "string",
-              "$ref": "#/definitions/Auth.username"
-            }
-          },
-          {
-            "name": "password",
-            "in": "body",
-            "description": "admin password",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "$ref": "#/definitions/Auth.password"
+              "$ref": "#/definitions/Auth"
             }
           }
         ],
@@ -69,23 +59,13 @@
         "description": "Login as admin",
         "parameters": [
           {
-            "name": "username",
+            "name": "Login",
             "in": "body",
             "description": "admin username",
             "required": true,
             "schema": {
               "type": "string",
-              "$ref": "#/definitions/Auth.username"
-            }
-          },
-          {
-            "name": "password",
-            "in": "body",
-            "description": "admin password",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "$ref": "#/definitions/Auth.password"
+              "$ref": "#/definitions/Auth"
             }
           }
         ],
@@ -104,20 +84,11 @@
         "parameters": [
           {
             "in": "body",
-            "name": "fullname",
+            "name": "Feedback",
             "description": "Name of customer submitting feedback",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/Feedback.fullname"
-            }
-          },
-          {
-            "in": "body",
-            "name": "message",
-            "description": "Feedback/Message of customer",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/Feedback.message"
+              "$ref": "#/definitions/Feedback"
             }
           }
         ],
