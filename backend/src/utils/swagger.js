@@ -1,11 +1,11 @@
 const swaggerJsdoc = require("swagger-jsdoc");
 const swaggerUi = require("swagger-ui-express");
 const swaggerDocument = require("../swagger.json");
- 
-
+const router = require("express").Router();
 const options = {
   swaggerDefinition: swaggerDocument,
-  apis: ["../routes/feedbackRoutes/*.js","../routes/adminRoutes/*.js"],
+  host: "localhost:5000",
+  apis: ["../routes/*.js"],
 };
 
 const swaggerSpec = swaggerJsdoc(options);
@@ -15,4 +15,3 @@ const setupSwagger = (app) => {
 };
 
 module.exports = setupSwagger;
-

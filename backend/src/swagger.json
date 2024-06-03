@@ -54,7 +54,7 @@
         ]
       }
     },
-    "/Admin": {
+    "/admin": {
       "post": {
         "tags": ["Admin"],
         "summary": "Add new admin user",
@@ -84,6 +84,54 @@
         "responses": {
           "201": {
             "description": "Admin users returned"
+          }
+        }
+      }
+    },
+    "/auth": {
+      "post": {
+        "tags": ["Auth"],
+        "summary": "Register new admin user",
+        "description": "Register new admin user",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Admin user added",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "$ref": "#/definitions/Auth"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Admin successfully added"
+          }
+        }
+      }
+    },
+    "/auth/login": {
+      "post": {
+        "tags": ["Auth"],
+        "summary": "Login as admin",
+        "description": "Login as admin",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "username",
+            "description": "Admin user added",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "$ref": "#/definitions/Auth"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Admin successfully added"
           }
         }
       }
@@ -122,6 +170,18 @@
           "type": "string"
         },
         "feedback": {
+          "type": "string"
+        }
+      }
+    },
+    "Auth": {
+      "type": "object",
+      "required": ["username", "password"],
+      "properties": {
+        "username": {
+          "type": "string"
+        },
+        "password": {
           "type": "string"
         }
       }

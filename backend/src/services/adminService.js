@@ -1,5 +1,4 @@
 const Admin = require("../domain/entities/admin");
-const bcrypt = require("bcrypt");
 const { hashPassword } = require("../utils/passwordHasher");
 class AdminService {
   constructor(adminRepository) {
