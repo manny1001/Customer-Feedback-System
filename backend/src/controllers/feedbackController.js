@@ -1,7 +1,7 @@
 const FeedbackService = require("../services/feedbackService");
-const MongoFeedbackRepository = require("../infrastructure/repositories/MongoFeedbackRepository");
+const IFeedbackRepository = require("../infrastructure/interfaces/IFeedbackRepository");
 
-const feedbackRepository = new MongoFeedbackRepository();
+const feedbackRepository = new IFeedbackRepository();
 const feedbackService = new FeedbackService(feedbackRepository);
 
 exports.createFeedback = async (req, res) => {

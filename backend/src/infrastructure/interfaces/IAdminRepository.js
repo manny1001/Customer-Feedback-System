@@ -1,7 +1,7 @@
 const AdminRepository = require("../../domain/repositories/AdminRepository");
 const AdminModel = require("../models/admin");
 
-class MongoAdminRepository extends AdminRepository {
+class IAdminRepository extends AdminRepository {
   async save(admin) {
     const adminModel = new AdminModel(admin);
     await adminModel.save();
@@ -13,4 +13,4 @@ class MongoAdminRepository extends AdminRepository {
   }
 }
 
-module.exports = MongoAdminRepository;
+module.exports = IAdminRepository;

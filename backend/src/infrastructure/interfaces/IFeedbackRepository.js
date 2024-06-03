@@ -1,7 +1,7 @@
 const FeedbackRepository = require("../../domain/repositories/FeedbackRepository");
 const FeedbackModel = require("../models/feedback");
 
-class MongoFeedbackRepository extends FeedbackRepository {
+class IFeedbackRepository extends FeedbackRepository {
   async save(feedback) {
     const feedbackModel = new FeedbackModel(feedback);
     await feedbackModel.save();
@@ -14,4 +14,4 @@ class MongoFeedbackRepository extends FeedbackRepository {
   }
 }
 
-module.exports = MongoFeedbackRepository;
+module.exports = IFeedbackRepository;

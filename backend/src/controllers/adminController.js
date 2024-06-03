@@ -1,7 +1,7 @@
 const AdminService = require("../services/adminService");
-const MongoAdminRepository = require("../infrastructure/repositories/MongoAdminRepository");
+const IAdminRepository = require("../infrastructure/interfaces/IAdminRepository");
 
-const adminRepository = new MongoAdminRepository();
+const adminRepository = new IAdminRepository();
 const adminService = new AdminService(adminRepository);
 
 exports.createAdmin = async (req, res) => {
