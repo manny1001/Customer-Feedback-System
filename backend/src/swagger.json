@@ -16,13 +16,23 @@
         "description": "Register new admin user",
         "parameters": [
           {
+            "name": "username",
             "in": "body",
-            "name": "body",
-            "description": "Admin user added",
+            "description": "admin username",
             "required": true,
             "schema": {
-              "type": "object",
-              "$ref": "#/definitions/Auth"
+              "type": "string",
+              "$ref": "#/definitions/Auth.username"
+            }
+          },
+          {
+            "name": "password",
+            "in": "body",
+            "description": "admin password",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "$ref": "#/definitions/Auth.password"
             }
           }
         ],
@@ -46,13 +56,23 @@
         "description": "Login as admin",
         "parameters": [
           {
+            "name": "username",
             "in": "body",
-            "name": "",
-            "description": "Admin user added",
+            "description": "admin username",
             "required": true,
             "schema": {
               "type": "string",
-              "$ref": "#/definitions/Auth"
+              "$ref": "#/definitions/Auth.username"
+            }
+          },
+          {
+            "name": "password",
+            "in": "body",
+            "description": "admin password",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "$ref": "#/definitions/Auth.password"
             }
           }
         ],
@@ -71,11 +91,20 @@
         "parameters": [
           {
             "in": "body",
-            "name": "name",
-            "description": "Feedback to submit to admin",
+            "name": "fullname",
+            "description": "Name of customer submitting feedback",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/Feedback"
+              "$ref": "#/definitions/Feedback.fullname"
+            }
+          },
+          {
+            "in": "body",
+            "name": "message",
+            "description": "Feedback/Message of customer",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Feedback.message"
             }
           }
         ],
@@ -93,7 +122,7 @@
         "description": "Get all customer feedback",
         "responses": {
           "200": {
-            "description": "A list of feedback",
+            "description": "A list of customer feedback submitted",
             "schema": {
               "type": "array",
               "items": {
@@ -131,7 +160,7 @@
   },
   "definitions": {
     "Feedback": {
-      "type": "object",
+      "type": "string",
       "required": ["fullname,message"],
       "properties": {
         "fullname": {
