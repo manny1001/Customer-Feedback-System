@@ -1,10 +1,15 @@
-class AdminRepository {
+const IAdminRepository = require("../../infrastructure/interfaces/IAdminRepository");
+const AdminModel = require("../../infrastructure/models/admin");
+
+class AdminRepository extends IAdminRepository {
   async save(admin) {
-    throw new Error("Method not implemented");
+    const adminModel = new AdminModel(admin);
+    await adminModel.save();
+    return adminModel;
   }
 
   async findAll() {
-    throw new Error("Method not implemented");
+    return await AdminModel.find();
   }
 }
 

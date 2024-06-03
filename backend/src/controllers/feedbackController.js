@@ -1,16 +1,16 @@
 const FeedbackService = require("../services/feedbackService");
-const IFeedbackRepository = require("../infrastructure/interfaces/IFeedbackRepository");
+const FeedbackRepository = require("../domain/repositories/FeedbackRepository");
 
-const feedbackRepository = new IFeedbackRepository();
+const feedbackRepository = new FeedbackRepository();
 const feedbackService = new FeedbackService(feedbackRepository);
 
 exports.createFeedback = async (req, res) => {
   try {
     const body = {
-      id :null,
+      id: null,
       fullname: req.body.fullname,
       message: req.body.message,
-      createdAt : new Date()
+      createdAt: new Date(),
     };
     const feedback = await feedbackService.createFeedback(body);
     res.status(201).json(feedback);
@@ -18,7 +18,6 @@ exports.createFeedback = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
-
 
 exports.getAllFeedback = async (req, res) => {
   try {

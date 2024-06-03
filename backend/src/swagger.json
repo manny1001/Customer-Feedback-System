@@ -56,36 +56,6 @@
         ]
       }
     },
-    "/admin/add": {
-      "post": {
-        "tags": ["Admin"],
-        "summary": "Add new admin user",
-        "description": "Add new admin user",
-        "parameters": [
-          {
-            "in": "body",
-            "name": "body",
-            "description": "Admin user added",
-            "required": true,
-            "schema": {
-              "type": "object",
-              "$ref": "#/definitions/Admin"
-            }
-          }
-        ],
-        "responses": {
-          "201": {
-            "description": "Admin successfully added"
-          }
-        },
-        "security": [
-          {
-            "bearerAuth": [],
-            "apiKeyAuth": []
-          }
-        ]
-      }
-    },
     "/admin/getall": {
       "get": {
         "tags": ["Admin"],

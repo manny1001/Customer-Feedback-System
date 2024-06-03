@@ -1,14 +1,14 @@
-class FeedbackRepository {
+const IFeedbackRepository = require("../../infrastructure/interfaces/IFeedbackRepository");
+const FeedbackModel = require("../../infrastructure/models/feedback");
+class FeedbackRepository extends IFeedbackRepository {
   async save(feedback) {
-    throw new Error("Method not implemented");
+    const feedbackModel = new FeedbackModel(feedback);
+    await feedbackModel.save();
+    return feedbackModel;
   }
 
-  /* async findById(id) {
-    throw new Error("Method not implemented");
-  } */
-
   async findAll() {
-    throw new Error("Method not implemented");
+    return await FeedbackModel.find();
   }
 }
 

@@ -1,7 +1,7 @@
 const AuthService = require("../services/authService");
-const IAuthRepository = require("../infrastructure/interfaces/IAuthRepository");
+const AuthRepository = require("../domain/repositories/AuthRepository");
 
-const authRepository = new IAuthRepository();
+const authRepository = new AuthRepository();
 const authService = new AuthService(authRepository);
 
 exports.register = async (req, res) => {
