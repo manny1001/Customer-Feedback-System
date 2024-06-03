@@ -4,6 +4,7 @@ const FeedbackRepository = require("../repositories/FeedbackRepository");
 const feedbackRepository = new FeedbackRepository();
 const feedbackService = new FeedbackService(feedbackRepository);
 
+const { sendEmail } = require("../utils/emailer");
 exports.createFeedback = async (req, res) => {
   if (!req.body.fullname || !req.body.message) {
     return res.status(404).json({ error: "Fullname and message is required." });
@@ -17,6 +18,7 @@ exports.createFeedback = async (req, res) => {
       createdAt: new Date(),
     };
     const feedback = await feedbackService.createFeedback(body);
+    /* sendEmail(req.body.message); */
     res.status(201).json(feedback);
   } catch (error) {
     res.status(500).json({ error: error.message });
