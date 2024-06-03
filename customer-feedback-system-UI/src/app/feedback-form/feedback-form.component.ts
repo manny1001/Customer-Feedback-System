@@ -29,11 +29,9 @@ export class FeedbackFormComponent {
 
   onSubmit(): void {
     if (this.feedbackForm.valid) {
-      console.log(environment.apiUrl + '/feedback/create');
       this.http
         .post(environment.apiUrl + '/feedback/create', this.feedbackForm.value)
         .subscribe((data) => {
-          console.log('Feedback submitted', data);
           alert('Successfully submitted form');
         });
     }
