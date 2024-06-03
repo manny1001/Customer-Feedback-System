@@ -8,10 +8,7 @@ class AdminService {
   async createAdmin(adminDto) {
     // Hash the password
     const hashedPassword = await hashPassword(adminDto.password);
-    console.log("Hashed Password:", hashedPassword);
     const admin = new Admin(null, adminDto.username, hashedPassword, false);
-
-    console.log(admin);
 
     return await this.adminRepository.save(admin);
   }

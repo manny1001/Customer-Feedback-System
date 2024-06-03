@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+
 class FeedbackService {
   constructor(feedbackRepository) {
     this.feedbackRepository = feedbackRepository;
