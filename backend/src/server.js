@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const app = require("./app");
-const ApiKey = require("./models/apiKey");
 dotenv.config();
 
 const PORT = process.env.PORT || 5000;

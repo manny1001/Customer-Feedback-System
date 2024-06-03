@@ -10,7 +10,7 @@ const sendEmail = (fullname, message) => {
     }
   );
   //send email with feedback in content
-  const request = mailJet.post("send", { version: "v3.1" }).request({
+  /* const request = mailJet.post("send", { version: "v3.1" }).request({
     Messages: [
       {
         From: {
@@ -30,15 +30,15 @@ const sendEmail = (fullname, message) => {
           '<h3>welcome to <a href="https://www.mailjet.com/">Mailjet</a>!</h3><br />May the delivery force be with you!',
       },
     ],
-  });
+  }); */
 
-  request
+  /* request
     .then((result) => {
       console.log(result.body);
     })
     .catch((err) => {
       console.log(err.statusCode);
-    });
+    }); */
 };
 module.exports = {
   sendEmail,

@@ -4,6 +4,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+import { environment } from '../enviroment/envoriment';
+
 @Component({
   selector: 'app-feedback-form',
   standalone: true,
@@ -26,21 +28,10 @@ export class FeedbackFormComponent {
   ngOnInit(): void {}
 
   onSubmit(): void {
-    /*  console.log(this.fullname, this.message);
-    const formData = {
-      fullname: this.fullname,
-      message: this.message,
-    };
-
-    this.http.post<any>('/feedback/create', formData).subscribe((data) => {
-      console.log('Feedback submitted', data);
-      alert('Successfully submitted form');
-    }); */
-
     if (this.feedbackForm.valid) {
-      console.log(this.feedbackForm.value)
+      console.log(environment.apiUrl + '/feedback/create');
       this.http
-        .post('/feedback/create', this.feedbackForm.value)
+        .post(environment.apiUrl + '/feedback/create', this.feedbackForm.value)
         .subscribe((data) => {
           console.log('Feedback submitted', data);
           alert('Successfully submitted form');

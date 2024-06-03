@@ -25,8 +25,7 @@ exports.createFeedback = async (req, res) => {
     const feedback = await feedbackService.createFeedback(body);
     try {
       const email = await emailService.sendEmail();
-      console.log(email);
-      return res.status(200).json(feedbacks);
+      return res.status(200).json(feedback);
     } catch (error) {
       return res.status(500).json({ error: error.message });
     }
