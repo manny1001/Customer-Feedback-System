@@ -1,6 +1,6 @@
-const IAuthRepository = require("../../infrastructure/interfaces/IAuthRepository");
-const AdminModel = require("../../infrastructure/models/admin");
-const { hashPassword, comparePassword } = require("../../utils/passwordHasher");
+const IAuthRepository = require("../interfaces/IAuthRepository");
+const AdminModel = require("../models/admin");
+const { hashPassword, comparePassword } = require("../utils/passwordHasher");
 
 const jwt = require("jsonwebtoken");
 const dotenv = require("dotenv");
@@ -17,12 +17,10 @@ class AuthRepository extends IAuthRepository {
   }
   async login(username, password) {
     const admin = await AdminModel.findOne({ password });
-    console.log(admin);
     if (!admin) {
       throw new Error("User not found");
     }
     const isPasswordValid = comparePassword(password, admin.password);
-    console.log(isPasswordValid);
     if (!isPasswordValid) {
       throw new Error("Invalid password");
     }
@@ -33,7 +31,6 @@ class AuthRepository extends IAuthRepository {
         expiresIn: "1h",
       }
     );
-    console.log(token);
     return { token, username };
   }
 }

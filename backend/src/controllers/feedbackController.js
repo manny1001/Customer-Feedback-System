@@ -1,10 +1,14 @@
 const FeedbackService = require("../services/feedbackService");
-const FeedbackRepository = require("../domain/repositories/FeedbackRepository");
+const FeedbackRepository = require("../repositories/FeedbackRepository");
 
 const feedbackRepository = new FeedbackRepository();
 const feedbackService = new FeedbackService(feedbackRepository);
 
 exports.createFeedback = async (req, res) => {
+  if (!req.body.fullname || !req.body.message) {
+    return res.status(404).json({ error: "Fullname and message is required." });
+  }
+
   try {
     const body = {
       id: null,

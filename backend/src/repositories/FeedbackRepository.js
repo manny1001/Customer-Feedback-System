@@ -1,5 +1,5 @@
-const IFeedbackRepository = require("../../infrastructure/interfaces/IFeedbackRepository");
-const FeedbackModel = require("../../infrastructure/models/feedback");
+const IFeedbackRepository = require("../interfaces/IFeedbackRepository");
+const FeedbackModel = require("../models/feedback");
 class FeedbackRepository extends IFeedbackRepository {
   async save(feedback) {
     const feedbackModel = new FeedbackModel(feedback);

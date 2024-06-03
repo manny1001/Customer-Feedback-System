@@ -1,5 +1,5 @@
 const AdminService = require("../services/adminService");
-const AdminRepository = require("../domain/repositories/AdminRepository");
+const AdminRepository = require("../repositories/AdminRepository");
 
 const adminRepository = new AdminRepository();
 const adminService = new AdminService(adminRepository);

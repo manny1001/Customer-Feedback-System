@@ -1,7 +1,7 @@
 const request = require('supertest');
 const app = require('../src/app');
 const mongoose = require('mongoose');
-const FeedbackModel = require('../src/infrastructure/models/FeedbackModel');
+const FeedbackModel = require('../src /models/FeedbackModel');
 
 beforeAll(async () => {
     await mongoose.connect(process.env.MONGO_URI, {
