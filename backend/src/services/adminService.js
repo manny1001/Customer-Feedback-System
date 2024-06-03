@@ -7,8 +7,8 @@ class AdminService {
   async getAlladmins() {
     return await this.adminRepository.findAll();
   }
-  async deleteAdmin() {
-    return await this.adminRepository.deleteById();
+  async deleteAdmin(Id) {
+    return await this.adminRepository.deleteById(Id);
   }
 }
 
