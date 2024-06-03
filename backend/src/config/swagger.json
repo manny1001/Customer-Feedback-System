@@ -1,10 +1,15 @@
 {
-  "swagger": "2.0",
+  "openapi": "3.0.1",
   "info": {
     "title": "Customer Feedback Management API",
     "description": "API for managing customer feedback",
     "version": "1.0.0"
   },
+  "servers": [
+    {
+      "url": "http://localhost:5000/api/v1"
+    }
+  ],
   "components": {
     "securitySchemes": {
       "bearerAuth": {
@@ -16,29 +21,74 @@
         "in": "header",
         "name": "x-api-key"
       }
+    },
+    "schemas": {
+      "Feedback": {
+        "type": "object",
+        "required": ["fullname", "message"],
+        "properties": {
+          "fullname": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          }
+        }
+      },
+      "Admin": {
+        "type": "object",
+        "required": ["name", "password", "isDeleted"],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          },
+          "isDeleted": {
+            "type": "string"
+          }
+        }
+      },
+      "Auth": {
+        "type": "object",
+        "required": ["username", "password"],
+        "properties": {
+          "username": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        }
+      },
+      "AdminDelete": {
+        "type": "object",
+        "required": ["Id"],
+        "properties": {
+          "Id": {
+            "type": "string"
+          }
+        }
+      }
     }
   },
-  "host": "localhost:5000",
-  "basePath": "/api/v1",
-  "schemes": ["http"],
   "paths": {
     "/auth/register": {
       "post": {
         "tags": ["Auth"],
         "summary": "Register new admin user",
         "description": "Register new admin user",
-        "parameters": [
-          {
-            "name": "Registration",
-            "in": "body",
-            "description": "admin username",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "$ref": "#/definitions/Auth"
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Auth"
+              }
             }
           }
-        ],
+        },
         "responses": {
           "201": {
             "description": "Admin successfully added"
@@ -57,18 +107,16 @@
         "tags": ["Auth"],
         "summary": "Login as admin",
         "description": "Login as admin",
-        "parameters": [
-          {
-            "name": "Login",
-            "in": "body",
-            "description": "admin username",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "$ref": "#/definitions/Auth"
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Auth"
+              }
             }
           }
-        ],
+        },
         "responses": {
           "201": {
             "description": "Admin successfully added"
@@ -81,17 +129,16 @@
         "tags": ["Feedback"],
         "summary": "Submit customer feedback",
         "description": "Submit customer feedback",
-        "parameters": [
-          {
-            "in": "body",
-            "name": "Feedback",
-            "description": "Name of customer submitting feedback",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/Feedback"
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Feedback"
+              }
             }
           }
-        ],
+        },
         "responses": {
           "201": {
             "description": "Feedback successfully submitted"
@@ -107,10 +154,14 @@
         "responses": {
           "200": {
             "description": "A list of customer feedback submitted",
-            "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/Feedback"
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Feedback"
+                  }
+                }
               }
             }
           }
@@ -146,17 +197,16 @@
         "tags": ["Admin"],
         "summary": "Delete Admin",
         "description": "Flag an admin as deleted on the system",
-        "parameters": [
-          {
-            "in": "body",
-            "name": "Id",
-            "description": "Id of admininstrator to flag as deleted",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/AdminDelete"
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AdminDelete"
+              }
             }
           }
-        ],
+        },
         "responses": {
           "201": {
             "description": "Feedback successfully submitted"
@@ -168,56 +218,6 @@
             "apiKeyAuth": []
           }
         ]
-      }
-    }
-  },
-  "definitions": {
-    "Feedback": {
-      "type": "string",
-      "required": ["fullname,message"],
-      "properties": {
-        "fullname": {
-          "type": "string"
-        },
-        "message": {
-          "type": "string"
-        }
-      }
-    },
-    "Admin": {
-      "type": "object",
-      "required": ["name", "password", "isDeleted"],
-      "properties": {
-        "name": {
-          "type": "string"
-        },
-        "password": {
-          "type": "string"
-        },
-        "isDeleted": {
-          "type": "string"
-        }
-      }
-    },
-    "Auth": {
-      "type": "object",
-      "required": ["username", "password"],
-      "properties": {
-        "username": {
-          "type": "string"
-        },
-        "password": {
-          "type": "string"
-        }
-      }
-    },
-    "AdminDelete": {
-      "type": "object",
-      "required": ["Id"],
-      "properties": {
-        "Id": {
-          "type": "string"
-        }
       }
     }
   }
