@@ -1,0 +1,224 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Customer Feedback Management API",
+    "description": "API for managing customer feedback",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:5000/api/v1"
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer"
+      },
+      "apiKeyAuth": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "x-api-key"
+      }
+    },
+    "schemas": {
+      "Feedback": {
+        "type": "object",
+        "required": ["fullname", "message"],
+        "properties": {
+          "fullname": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          }
+        }
+      },
+      "Admin": {
+        "type": "object",
+        "required": ["name", "password", "isDeleted"],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          },
+          "isDeleted": {
+            "type": "string"
+          }
+        }
+      },
+      "Auth": {
+        "type": "object",
+        "required": ["username", "password"],
+        "properties": {
+          "username": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        }
+      },
+      "AdminDelete": {
+        "type": "object",
+        "required": ["Id"],
+        "properties": {
+          "Id": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "paths": {
+    "/auth/register": {
+      "post": {
+        "tags": ["Auth"],
+        "summary": "Register new admin user",
+        "description": "Register new admin user",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Auth"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Admin successfully added"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": [],
+            "apiKeyAuth": []
+          }
+        ]
+      }
+    },
+    "/auth/login": {
+      "post": {
+        "tags": ["Auth"],
+        "summary": "Login as admin",
+        "description": "Login as admin",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Auth"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Admin successfully added"
+          }
+        }
+      }
+    },
+    "/feedback/create": {
+      "post": {
+        "tags": ["Feedback"],
+        "summary": "Submit customer feedback",
+        "description": "Submit customer feedback",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Feedback"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Feedback successfully submitted"
+          }
+        }
+      }
+    },
+    "/feedback/getall": {
+      "get": {
+        "tags": ["Feedback"],
+        "summary": "Get all customer feedback",
+        "description": "Get all customer feedback",
+        "responses": {
+          "200": {
+            "description": "A list of customer feedback submitted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Feedback"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": [],
+            "apiKeyAuth": []
+          }
+        ]
+      }
+    },
+    "/admin/getall": {
+      "get": {
+        "tags": ["Admin"],
+        "summary": "Get all admin users",
+        "description": "Get all admin users",
+        "responses": {
+          "201": {
+            "description": "Admin users returned"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": [],
+            "apiKeyAuth": []
+          }
+        ]
+      }
+    },
+    "/admin/deleteAdmin": {
+      "post": {
+        "tags": ["Admin"],
+        "summary": "Delete Admin",
+        "description": "Flag an admin as deleted on the system",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AdminDelete"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Feedback successfully submitted"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": [],
+            "apiKeyAuth": []
+          }
+        ]
+      }
+    }
+  }
+}

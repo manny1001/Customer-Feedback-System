@@ -2,6 +2,8 @@ const express = require("express");
 const router = express.Router();
 const feedbackController = require("../controllers/feedbackController");
 const authMiddleware = require("../middleware/authMiddleware");
+//#region
+
 /**
  * @swagger
  * /:
@@ -20,7 +22,9 @@ const authMiddleware = require("../middleware/authMiddleware");
  *         description: Feedback submitted successfully
  */
 router.post("/create", feedbackController.createFeedback);
+//#endregion
 
+//#region
 /**
  * @swagger
  /:
@@ -36,6 +40,10 @@ router.post("/create", feedbackController.createFeedback);
  *           items:
  *             $ref: '#/definitions/Feedback'
  */
-router.get("/getall", authMiddleware.protected, feedbackController.getAllFeedback);
-
+router.get(
+  "/getall",
+  authMiddleware.protected,
+  feedbackController.getAllFeedback
+);
+//#endregion
 module.exports = router;

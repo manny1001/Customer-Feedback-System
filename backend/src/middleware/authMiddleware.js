@@ -1,7 +1,6 @@
-const jwt = require("jsonwebtoken");
-const AdminUser = require("../infrastructure/models/admin");
-const ApiKey = require("../infrastructure/models/apiKey");
-
+const ApiKey = require("../models/apiKey");
+const dotenv = require("dotenv");
+dotenv.config();
 const protected = async (req, res, next) => {
   const authHeader = req.headers["authorization"];
   const apiKey = req.headers["x-api-key"] || req.query.apiKey;
@@ -13,7 +12,7 @@ const protected = async (req, res, next) => {
     return res.status(401).json({ message: "No API KEY" });
   }
 
-  const apiExists = await ApiKey.findOne({ key: "YOUR_GENERATED_API_KEY" });
+  const apiExists = await ApiKey.findOne({ key: process.env.CFS_API_KEY });
   if (apiExists) {
     token = authHeader.split(" ")[1];
   }

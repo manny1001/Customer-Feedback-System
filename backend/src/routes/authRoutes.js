@@ -3,6 +3,7 @@ const router = express.Router();
 const authController = require("../controllers/authController");
 const authMiddleware = require("../middleware/authMiddleware");
 
+//#region
 /**
  * @swagger
  * /:
@@ -19,7 +20,9 @@ const authMiddleware = require("../middleware/authMiddleware");
  *             $ref: '#/definitions/Admin'
  */
 router.post("/register", authMiddleware.protected, authController.register);
+//#endregion
 
+//#region
 /**
  * @swagger
  * /:
@@ -38,5 +41,5 @@ router.post("/register", authMiddleware.protected, authController.register);
  *         description: Admin successfully added
  */
 router.post("/login", authController.login);
-
+//#endregion
 module.exports = router;

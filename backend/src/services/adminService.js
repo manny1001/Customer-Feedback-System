@@ -1,19 +1,14 @@
-const Admin = require("../domain/entities/admin");
-const { hashPassword } = require("../utils/passwordHasher");
+/* Admin service  to handle user administrative processes such 
+as getAlladmins and deleting an existing admin */
 class AdminService {
   constructor(adminRepository) {
     this.adminRepository = adminRepository;
   }
-  async createAdmin(adminDto) {
-    // Hash the password
-    const hashedPassword = await hashPassword(adminDto.password);
-    const admin = new Admin(null, adminDto.username, hashedPassword, false);
-
-    return await this.adminRepository.save(admin);
-  }
-
   async getAlladmins() {
     return await this.adminRepository.findAll();
+  }
+  async deleteAdmin(Id) {
+    return await this.adminRepository.deleteById(Id);
   }
 }
 

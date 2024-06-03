@@ -1,6 +1,6 @@
 const swaggerJsdoc = require("swagger-jsdoc");
 const swaggerUi = require("swagger-ui-express");
-const swaggerDocument = require("../swagger.json");
+const swaggerDocument = require("../config/swagger.json");
 const options = {
   swaggerDefinition: swaggerDocument,
   host: "localhost:5000",

@@ -3,25 +3,7 @@ const router = express.Router();
 const adminController = require("../controllers/adminController");
 const authMiddleware = require("../middleware/authMiddleware");
 
-/**
- * @swagger
- * /:
- *   post:
- *     tags:
- *       - Admin
- *     description: Add new admin user
- *     parameters:
- *       - name: body
- *         in: body
- *         required: true
- *         schema:
- *           $ref: '#/definitions/Admin'
- *     responses:
- *       201:
- *         description: Admin successfully added
- */
-router.post("/add", authMiddleware.protected, adminController.createAdmin);
-
+//#region
 /**
  * @swagger
  * /:
@@ -38,5 +20,28 @@ router.post("/add", authMiddleware.protected, adminController.createAdmin);
  *             $ref: '#/definitions/Admin'
  */
 router.get("/getall", authMiddleware.protected, adminController.getAllAdmins);
+//#endregion
 
+//#region
+/**
+ * @swagger
+ * /:
+ *   get:
+ *     tags:
+ *       - Admin
+ *     description: Flag a admin user as deleted
+ *     responses:
+ *       200:
+ *         description: Flag a admin user as deleted
+ *         schema:
+ *           type: array
+ *           items:
+ *             $ref: '#/definitions/Admin'
+ */
+router.post(
+  "/deleteAdmin",
+  authMiddleware.protected,
+  adminController.deleteAdmin
+);
+//#endregion
 module.exports = router;
