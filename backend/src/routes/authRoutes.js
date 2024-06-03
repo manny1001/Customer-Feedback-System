@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const authController = require("../controllers/authController");
+const authMiddleware = require("../middleware/authMiddleware");
 
 /**
  * @swagger
@@ -17,7 +18,7 @@ const authController = require("../controllers/authController");
  *           items:
  *             $ref: '#/definitions/Admin'
  */
-router.post("/", authController.register);
+router.post("/register", authMiddleware.protected, authController.register);
 
 /**
  * @swagger

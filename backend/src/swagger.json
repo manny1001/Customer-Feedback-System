@@ -9,7 +9,7 @@
   "basePath": "/api/v1",
   "schemes": ["http"],
   "paths": {
-    "/feedback": {
+    "/feedback/create": {
       "post": {
         "tags": ["Feedback"],
         "summary": "Submit customer feedback",
@@ -17,7 +17,7 @@
         "parameters": [
           {
             "in": "body",
-            "name": "body",
+            "name": "name",
             "description": "Feedback to submit to admin",
             "required": true,
             "schema": {
@@ -30,7 +30,9 @@
             "description": "Feedback successfully submitted"
           }
         }
-      },
+      }
+    },
+    "/feedback/getall": {
       "get": {
         "tags": ["Feedback"],
         "summary": "Get all customer feedback",
@@ -54,7 +56,7 @@
         ]
       }
     },
-    "/admin": {
+    "/admin/add": {
       "post": {
         "tags": ["Admin"],
         "summary": "Add new admin user",
@@ -75,8 +77,16 @@
           "201": {
             "description": "Admin successfully added"
           }
-        }
-      },
+        },
+        "security": [
+          {
+            "bearerAuth": [],
+            "apiKeyAuth": []
+          }
+        ]
+      }
+    },
+    "/admin/getall": {
       "get": {
         "tags": ["Admin"],
         "summary": "Get all admin users",
@@ -85,10 +95,16 @@
           "201": {
             "description": "Admin users returned"
           }
-        }
+        },
+        "security": [
+          {
+            "bearerAuth": [],
+            "apiKeyAuth": []
+          }
+        ]
       }
     },
-    "/auth": {
+    "/auth/register": {
       "post": {
         "tags": ["Auth"],
         "summary": "Register new admin user",
@@ -109,7 +125,13 @@
           "201": {
             "description": "Admin successfully added"
           }
-        }
+        },
+        "security": [
+          {
+            "bearerAuth": [],
+            "apiKeyAuth": []
+          }
+        ]
       }
     },
     "/auth/login": {
@@ -140,9 +162,12 @@
   "definitions": {
     "Feedback": {
       "type": "object",
-      "required": ["id"],
+      "required": ["fullname,message"],
       "properties": {
-        "id": {
+        "fullname": {
+          "type": "string"
+        },
+        "message": {
           "type": "string"
         }
       }
@@ -158,18 +183,6 @@
           "type": "string"
         },
         "isDeleted": {
-          "type": "string"
-        }
-      }
-    },
-    "Customer": {
-      "type": "object",
-      "required": ["name", "feedback"],
-      "properties": {
-        "name": {
-          "type": "string"
-        },
-        "feedback": {
           "type": "string"
         }
       }

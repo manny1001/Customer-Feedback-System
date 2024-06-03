@@ -20,7 +20,7 @@ const authMiddleware = require("../middleware/authMiddleware");
  *       201:
  *         description: Admin successfully added
  */
-router.post("/",  adminController.createAdmin);
+router.post("/add", authMiddleware.protected, adminController.createAdmin);
 
 /**
  * @swagger
@@ -37,8 +37,6 @@ router.post("/",  adminController.createAdmin);
  *           items:
  *             $ref: '#/definitions/Admin'
  */
-router.get("/",  adminController.getAllAdmins);
-
-
+router.get("/getall", authMiddleware.protected, adminController.getAllAdmins);
 
 module.exports = router;

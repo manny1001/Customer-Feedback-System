@@ -16,11 +16,13 @@ class IAuthRepository extends AuthRepository {
     return admin;
   }
   async login(username, password) {
-    const admin = await AdminModel.findOne({ username });
+    const admin = await AdminModel.findOne({ password });
+    console.log(admin);
     if (!admin) {
       throw new Error("User not found");
     }
     const isPasswordValid = comparePassword(password, admin.password);
+    console.log(isPasswordValid);
     if (!isPasswordValid) {
       throw new Error("Invalid password");
     }
@@ -31,6 +33,7 @@ class IAuthRepository extends AuthRepository {
         expiresIn: "1h",
       }
     );
+    console.log(token);
     return { token, username };
   }
 }

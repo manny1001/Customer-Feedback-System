@@ -19,7 +19,7 @@ const authMiddleware = require("../middleware/authMiddleware");
  *       201:
  *         description: Feedback submitted successfully
  */
-router.post("/", feedbackController.createFeedback);
+router.post("/create", feedbackController.createFeedback);
 
 /**
  * @swagger
@@ -36,6 +36,6 @@ router.post("/", feedbackController.createFeedback);
  *           items:
  *             $ref: '#/definitions/Feedback'
  */
-router.get("/", feedbackController.getAllFeedback);
+router.get("/getall", authMiddleware.protected, feedbackController.getAllFeedback);
 
 module.exports = router;
