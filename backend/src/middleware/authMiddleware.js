@@ -1,27 +1,24 @@
 const jwt = require("jsonwebtoken");
-const User = require("../models/User");
+const AdminUser = require("../infrastructure/models/admin");
+const ApiKey = require("../infrastructure/models/apiKey");
 
-const protected
- = async (req, res, next) => {
-  let token;
-  if (
-    req.headers.authorization &&
-    req.headers.authorization.startsWith("Bearer")
-  ) {
-    token = req.headers.authorization.split(" ")[1];
+const protected = async (req, res, next) => {
+  const authHeader = req.headers["authorization"];
+  const apiKey = req.headers["x-api-key"] || req.query.apiKey;
+  let token = "";
+  if (!authHeader || !authHeader.startsWith("Bearer ")) {
+    return res.status(401).json({ message: "Unauthorized Token or API Key" });
+  }
+  if (!apiKey) {
+    return res.status(401).json({ message: "No API KEY" });
   }
 
-  if (!token) {
-    return res.status(401).json({ error: "Not authorized" });
+  const apiExists = await ApiKey.findOne({ key: "YOUR_GENERATED_API_KEY" });
+  if (apiExists) {
+    token = authHeader.split(" ")[1];
   }
-
-  try {
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    req.user = await User.findById(decoded.id).select("-password");
-    next();
-  } catch (error) {
-    return res.status(401).json({ error: "Not authorized" });
-  }
+  next();
+  return token;
 };
 
 module.exports = {

@@ -1,9 +1,8 @@
 class Feedback {
-  constructor(id, userId, message, rating, createdAt) {
+  constructor(id, fullname, message, createdAt) {
     this.id = id;
-    this.userId = userId;
+    this.fullname = fullname;
     this.message = message;
-    this.rating = rating;
     this.createdAt = createdAt;
   }
 }

@@ -1,44 +1,24 @@
 const FeedbackService = require("../services/feedbackService");
-const MongoFeedbackRepository = require("../infrastructure/repositories/MongoFeedbackRepository");
+const IFeedbackRepository = require("../infrastructure/interfaces/IFeedbackRepository");
 
-const feedbackRepository = new MongoFeedbackRepository();
-console.log(feedbackRepository);
+const feedbackRepository = new IFeedbackRepository();
 const feedbackService = new FeedbackService(feedbackRepository);
 
 exports.createFeedback = async (req, res) => {
   try {
     const body = {
-      userId: req.body.customerId,
-      message: req.body.comments,
-      rating: req.body.rating,
+      id :null,
+      fullname: req.body.fullname,
+      message: req.body.message,
+      createdAt : new Date()
     };
     const feedback = await feedbackService.createFeedback(body);
-    feedback
-      .save()
-      .then((savedFeedback) => {
-        console.log(savedFeedback);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-
     res.status(201).json(feedback);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 };
 
-exports.getFeedbackById = async (req, res) => {
-  try {
-    const feedback = await feedbackService.getFeedbackById(req.params.id);
-    if (!feedback) {
-      return res.status(404).json({ error: "Feedback not found" });
-    }
-    res.status(200).json(feedback);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-};
 
 exports.getAllFeedback = async (req, res) => {
   try {

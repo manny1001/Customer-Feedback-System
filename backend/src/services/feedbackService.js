@@ -1,4 +1,3 @@
-const Feedback = require("../domain/entities/feedback");
 
 class FeedbackService {
   constructor(feedbackRepository) {
@@ -6,18 +5,7 @@ class FeedbackService {
   }
 
   async createFeedback(feedbackDto) {
-    const feedback = new Feedback(
-      null,
-      feedbackDto.userId,
-      feedbackDto.message,
-      feedbackDto.rating
-    );
-    console.log(feedback);
-    return await this.feedbackRepository.save(feedback);
-  }
-
-  async getFeedbackById(id) {
-    return await this.feedbackRepository.findById(id);
+    return await this.feedbackRepository.save(feedbackDto);
   }
 
   async getAllFeedback() {
