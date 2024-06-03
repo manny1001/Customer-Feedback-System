@@ -15,10 +15,6 @@ class AdminService {
     return await this.adminRepository.save(admin);
   }
 
-  async getadminById(id) {
-    return await this.adminRepository.findById(id);
-  }
-
   async getAlladmins() {
     return await this.adminRepository.findAll();
   }

@@ -5,21 +5,11 @@ class MongoAdminRepository extends AdminRepository {
   async save(admin) {
     const adminModel = new AdminModel(admin);
     await adminModel.save();
-    return admin;
+    return adminModel;
   }
 
-  async findById(id) {
-    return await AdminModel.findById(id);
-  }
-
-  async getAlladmins() {
-    return await AdminModel.findAll();
-  }
-
-  async deleteById() {
-    return await AdminModel.findById(id).then(
-      (data) => (data.$isDeleted = true)
-    );
+  async findAll() {
+    return await AdminModel.find();
   }
 }
 

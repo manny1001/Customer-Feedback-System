@@ -81,17 +81,6 @@
         "tags": ["Admin"],
         "summary": "Get all admin users",
         "description": "Get all admin users",
-        "parameters": [
-          {
-            "description": "Get all admin users",
-            "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/Admin"
-              }
-            }
-          }
-        ],
         "responses": {
           "201": {
             "description": "Admin users returned"

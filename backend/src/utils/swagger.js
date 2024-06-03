@@ -5,7 +5,7 @@ const swaggerDocument = require("../swagger.json");
 
 const options = {
   swaggerDefinition: swaggerDocument,
-  apis: ["../routes/feedbackRoutes/*.js"],
+  apis: ["../routes/feedbackRoutes/*.js","../routes/adminRoutes/*.js"],
 };
 
 const swaggerSpec = swaggerJsdoc(options);

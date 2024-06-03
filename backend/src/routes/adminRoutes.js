@@ -25,16 +25,10 @@ router.post("/",  adminController.createAdmin);
 /**
  * @swagger
  * /:
- *   post:
+ *   get:
  *     tags:
  *       - Admin
  *     description: Get all administrators
- *     parameters:
- *       - name: body
- *         in: body
- *         required: true
- *         schema:
- *           $ref: '#/definitions/Admin'
  *     responses:
  *       200:
  *         description: List of administrators

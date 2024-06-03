@@ -6,7 +6,6 @@ const adminService = new AdminService(adminRepository);
 
 exports.createAdmin = async (req, res) => {
   try {
-    console.log("req", req);
     const body = {
       username: req.body.name,
       password: req.body.password,
@@ -22,8 +21,7 @@ exports.createAdmin = async (req, res) => {
 
 exports.getAllAdmins = async (req, res) => {
   try {
-    const admins = await adminService.getAllAdmins();
-    console.log(admins)
+    const admins = await adminService.getAlladmins();
     res.status(200).json(admins);
   } catch (error) {
     res.status(500).json({ error: error.message });

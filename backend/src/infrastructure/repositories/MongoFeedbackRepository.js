@@ -8,9 +8,6 @@ class MongoFeedbackRepository extends FeedbackRepository {
     return feedbackModel;
   }
 
-  async findById(id) {
-    return await FeedbackModel.findById(id);
-  }
 
   async findAll() {
     return await FeedbackModel.find();

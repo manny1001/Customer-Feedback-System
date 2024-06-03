@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const { ObjectId } = mongoose.Types;
 class FeedbackService {
   constructor(feedbackRepository) {
     this.feedbackRepository = feedbackRepository;
@@ -7,14 +6,6 @@ class FeedbackService {
 
   async createFeedback(feedbackDto) {
     return await this.feedbackRepository.save(feedbackDto);
-  }
-
-  async getFeedbackById(id) {
-    if (!mongoose.Types.ObjectId.isValid(id)) {
-      return;
-    }
-
-    return await this.feedbackRepository.findById(id);
   }
 
   async getAllFeedback() {
