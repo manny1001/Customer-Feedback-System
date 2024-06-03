@@ -1,3 +1,5 @@
+/* Authentication service  to handle user authentication processes such 
+as registering a new admin and logging in an existing admin */
 class AuthService {
   constructor(authRepository) {
     this.authRepository = authRepository;

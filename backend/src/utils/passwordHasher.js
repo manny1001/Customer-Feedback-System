@@ -1,7 +1,9 @@
 const bcrypt = require("bcrypt");
 
-const saltRounds = 10; // You can adjust the number of salt rounds as needed
+// You can adjust the number of salt rounds as needed
+const saltRounds = 10;
 
+//Async function to hash a password based on the saltRounds provided
 const hashPassword = async (password) => {
   try {
     const salt = await bcrypt.genSalt(saltRounds);
@@ -11,6 +13,8 @@ const hashPassword = async (password) => {
     throw new Error("Error hashing password: " + error.message);
   }
 };
+
+//Async function to compare hashed passwords
 
 const comparePassword = async (password, hash) => {
   try {

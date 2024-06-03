@@ -1,4 +1,4 @@
-
+/* FeedbackService service to handle when usersubmiys feedback and getting all feedbacks on the system*/
 class FeedbackService {
   constructor(feedbackRepository) {
     this.feedbackRepository = feedbackRepository;

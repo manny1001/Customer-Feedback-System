@@ -156,6 +156,35 @@
           }
         ]
       }
+    },
+    "/admin/deleteAdmin": {
+      "post": {
+        "tags": ["Admin"],
+        "summary": "Delete Admin",
+        "description": "Flag an admin as deleted on the system",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "Id",
+            "description": "Id of admininstrator to flag as deleted",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AdminDelete"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Feedback successfully submitted"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": [],
+            "apiKeyAuth": []
+          }
+        ]
+      }
     }
   },
   "definitions": {
@@ -194,6 +223,15 @@
           "type": "string"
         },
         "password": {
+          "type": "string"
+        }
+      }
+    },
+    "AdminDelete": {
+      "type": "object",
+      "required": ["Id"],
+      "properties": {
+        "Id": {
           "type": "string"
         }
       }

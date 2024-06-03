@@ -13,3 +13,12 @@ exports.getAllAdmins = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
+
+exports.deleteAdmin = async (req, res) => {
+  try {
+    const admin = await adminService.deleteAdmin(req.body.Id);
+    res.status(200).json(admin);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};

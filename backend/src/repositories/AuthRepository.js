@@ -1,12 +1,10 @@
 const IAuthRepository = require("../interfaces/IAuthRepository");
 const AdminModel = require("../models/admin");
 const { hashPassword, comparePassword } = require("../utils/passwordHasher");
-
 const jwt = require("jsonwebtoken");
 const dotenv = require("dotenv");
-dotenv.config();
-
 const JWT_SECRET = process.env.JWT_SECRET;
+dotenv.config();
 
 class AuthRepository extends IAuthRepository {
   async register(username, password) {
