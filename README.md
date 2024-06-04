@@ -1,4 +1,4 @@
-# Customer Management System (CMS)
+# Customer Feedback System (CFS)
 
 ## Table of Contents
 1. [Project Overview](#project-overview)
