@@ -1,0 +1,28 @@
+<form [formGroup]="feedbackForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label for="fullname">Fullname:</label>
+    <input type="text" id="fullname" formControlName="fullname" />
+    <div
+      *ngIf="
+        feedbackForm.get('fullname')?.invalid &&
+        feedbackForm.get('fullname')?.touched
+      "
+    >
+      Fullname is required
+    </div>
+  </div>
+  <div>
+    <label for="message">message:</label>
+    <textarea type="text" id="message" formControlName="message"></textarea>
+
+    <div
+      *ngIf="
+        feedbackForm.get('message')?.invalid &&
+        feedbackForm.get('message')?.touched
+      "
+    >
+      message is required
+    </div>
+  </div>
+  <button type="submit" [disabled]="feedbackForm.invalid">Submit</button>
+</form>

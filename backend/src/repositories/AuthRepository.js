@@ -14,7 +14,7 @@ class AuthRepository extends IAuthRepository {
     return admin;
   }
   async login(username, password) {
-    const admin = await AdminModel.findOne({ password });
+    const admin = await AdminModel.findOne({ username });
     if (!admin) {
       throw new Error("User not found");
     }
