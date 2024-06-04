@@ -9,6 +9,7 @@ import {
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { environment } from '../enviroment/envoriment';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-login-form',
   standalone: true,
@@ -18,7 +19,11 @@ import { CommonModule } from '@angular/common';
 })
 export class LoginFormComponent {
   loginForm: FormGroup;
-  constructor(private fb: FormBuilder, private http: HttpClient) {
+  constructor(
+    private fb: FormBuilder,
+    private http: HttpClient,
+    private router: Router
+  ) {
     this.loginForm = this.fb.group({
       username: ['', Validators.required],
       password: ['', Validators.required],
@@ -29,18 +34,19 @@ export class LoginFormComponent {
 
   onSubmit(): void {
     if (this.loginForm.valid) {
-      console.log(this.loginForm.value);
       this.http
         .post(environment.apiUrl + '/auth/login', this.loginForm.value)
         .subscribe(
-          (response) => {
+          (response: any) => {
             console.log(response);
-            alert('Successfully submitted form');
-            /* if (response.token) {
-              this.cookieService.set('jwt', response.token, 1);  
-              console.log('Login successful and token stored in cookie');
-              
-            } */
+            /* this.cookieService.set('jwt', response.token, 1);   */
+            if (response.token) {
+              sessionStorage.setItem('jwt', response.token);
+              alert(
+                'Login successful and token stored in localStorage...Shhh 🤫'
+              );
+              this.router.navigate(['/admin']);
+            }
           },
           (err) => {
             alert(err.error.error);
